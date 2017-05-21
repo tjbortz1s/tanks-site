@@ -63,7 +63,7 @@ var urlParams;
 //and an x y coordinate
 var ship = [];
 //will be equal to an array if something is selected, containing all indexes of selected items
-var selectedShipIndexes = null; 
+var selectedShipIndexes = null;
 //action will indicate what to do on click
 //draw, erase, select, move, etc
 var action = null;
@@ -156,7 +156,7 @@ function drawResizeHighlight(canvas, shape){
             break;
         case "circle":
             //draw a circle at the four points at the edge of the circle
-            
+
             break;
         case "line":
             //draw a circle at start and end points
@@ -208,7 +208,7 @@ function findShapesAtPoint(ship, x, y){
                 if(ship[i].shape == "rect"){
                     xyVals = [ship[i].data[0], ship[i].data[1], ship[i].data[0] + ship[i].data[2], ship[i].data[1] + ship[i].data[3]];
                 }
-                
+
                 var boundingValues = getGreaterLesserValues(xyVals);
                 //make it so that if the targets are too small they are expanded
                 if(boundingValues.greaterx - boundingValues.lesserx < 5){
@@ -220,7 +220,7 @@ function findShapesAtPoint(ship, x, y){
                     boundingValues.lessery = boundingValues.lessery - 4;
                 }
                 //do the search
-                if(x < boundingValues.greaterx && x > boundingValues.lesserx && 
+                if(x < boundingValues.greaterx && x > boundingValues.lesserx &&
                     y > boundingValues.lessery && y < boundingValues.greatery){
                     //point falls inside the square
                     foundShapes.push(ship[i]);
@@ -291,7 +291,7 @@ function renderShip(canvas, ship, startx, starty){
                 context.closePath();
                 context.stroke();
                 break;
-            default: 
+            default:
                 break;
         };
     });
@@ -369,7 +369,7 @@ function drawPreview(shape, data, x, y){
             context.closePath();
             context.stroke();
             break;
-        default: 
+        default:
             break;
     };
 }
@@ -447,7 +447,7 @@ function defaultOnCanvasClick(event){
                         }
                     }
                     break;
-                    
+
                 default:
                     //start the draw process by adding the needed event listeners
                     canvas.addEventListener("mousemove", mouseTrack, false);
@@ -456,7 +456,7 @@ function defaultOnCanvasClick(event){
             }
             break;
         case "erase":
-            //do something to erase.  
+            //do something to erase.
             break;
         case "select":
             var selectedStack = findShapesAtPoint(ship, x, y);
@@ -649,7 +649,7 @@ function mouseUp(event){
         fill = "fill";
     }
     console.log(fill, color);
-    
+
     //perform final draw action
     var initialx = initialPosition[0];
     var initialy = initialPosition[1];
@@ -690,7 +690,7 @@ function mouseUp(event){
                     selectedShape.data = newData;
                     break;
             }
-            
+
             moveRelease();
             renderShip(drawCanvas, ship, 0, 0);
             drawSelectedHighlight(previewCanvas, selectedShape);
